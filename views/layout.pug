@@ -1,9 +1,22 @@
 doctype html
 html
     title Knowledge Base
+    link(rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css")
 body
-    block content
-    br
-    hr
-    footer
-        p Copyright &copy; 2019
+    nav.navbar.navbar-inverse
+        .container
+            .navbar-header
+                
+                a.navbar-brand(href='/') Knowledgebase
+            
+                ul.nav.navbar-nav
+                    li.active
+                        a(href='/') Home
+                    li
+                        a(href='/articles/add') Add Article
+    .container
+        block content
+        br
+        hr
+        footer
+            p Copyright &copy; 2019

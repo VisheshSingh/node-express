@@ -7,7 +7,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/nodekb");
+app.use(express.static(path.join(__dirname, 'public')))
+
+mongoose.connect("mongodb://localhost/nodekb", { useNewUrlParser: true });
 let db = mongoose.connection;
 
 db.once('open', () => {
@@ -42,6 +44,18 @@ app.get("/articles/add", (req, res) => {
     res.render('add', {
         title: 'Add Articles'
     });
+})
+
+app.get("/article/:id", (req, res) => {
+    Articles.findById(req.params.id, (err, article) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('article', {
+                article: article
+            })
+        }
+    })
 })
 
 app.post('/articles/add', (req, res) => {

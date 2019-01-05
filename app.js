@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.connect("mongodb://localhost/nodekb");
 let db = mongoose.connection;
@@ -41,4 +44,18 @@ app.get("/articles/add", (req, res) => {
     });
 })
 
+app.post('/articles/add', (req, res) => {
+    let article = new Articles();
+    article.title = req.body.title;
+    article.author = req.body.author;
+    article.body = req.body.body;
+
+    article.save((err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    })
+})
 app.listen(5000, () => console.log('serving on port 5000...'))

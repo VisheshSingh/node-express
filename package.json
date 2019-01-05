@@ -1,0 +1,14 @@
+{
+  "name": "node-express-from-scratch",
+  "version": "1.0.0",
+  "description": "Node, express, mongoDB, mongoose orm project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Vishesh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
